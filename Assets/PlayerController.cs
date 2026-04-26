@@ -3,8 +3,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 { 
+    [Header("Horizontal Movement Settings")]
     private Rigidbody2D rb;
-    private float walkspeed = 1f;
+    [SerializeField] private float walkspeed = 6f;
     private float xAxis;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
