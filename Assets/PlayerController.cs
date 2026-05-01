@@ -3,28 +3,26 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 { 
-    [Header("Horizontal Movement Settings")]
     private Rigidbody2D rb;
     [SerializeField] private float walkspeed = 6f;
     private float xAxis;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private float jumpForce = 20f;
+    private bool jumpPressed;
+
     void Start()
     {
-       	rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         GetInputs();
-   	    Move();
+        Move();
+        Jump();
     }
-
-
 
     void GetInputs()
     {
-        // Keyboard.current replaces Input.GetAxisRaw("Horizontal")
         var keyboard = Keyboard.current;
         if (keyboard == null) return;
 
@@ -33,15 +31,20 @@ public class PlayerController : MonoBehaviour
             xAxis = -1f;
         if (keyboard.rightArrowKey.isPressed || keyboard.dKey.isPressed)
             xAxis = 1f;
+
+        jumpPressed = keyboard.spaceKey.wasPressedThisFrame;
     }
 
-    
     private void Move()
     {
-	    rb.linearVelocity = new Vector2(walkspeed * xAxis, rb.linearVelocity.y);
-    }	
-	 	
-   
+        rb.linearVelocity = new Vector2(walkspeed * xAxis, rb.linearVelocity.y);
+    }
 
-
+    private void Jump()
+    {
+        if (jumpPressed)
+        {
+            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        }
+    }
 }
