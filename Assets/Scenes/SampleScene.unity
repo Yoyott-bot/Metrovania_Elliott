@@ -690,6 +690,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   walkspeed: 6
+  jumpForce: 20
+  jumpPressed: 0
+  groundCheckPoint: {fileID: 1231774006}
+  groundCheckY: 0.2
+  groundCheckX: 0.5
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
