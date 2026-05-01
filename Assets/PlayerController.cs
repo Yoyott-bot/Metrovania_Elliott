@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
-        if (jumpPressed)
+        if (jumpPressed && Grounded())
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
